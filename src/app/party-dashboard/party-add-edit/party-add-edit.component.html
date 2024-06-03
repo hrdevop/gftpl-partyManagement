@@ -1,0 +1,479 @@
+<div class="d-flex justify-content-between align-items-center">
+  <h2 mat-dialog-title class="pb-0">{{ isEdit ? 'Edit' : 'Add' }} Party</h2>
+  <button mat-dialog-close mat-icon-button class="d-flex mx-2" type="button">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-divider class="my-2"></mat-divider>
+<form
+  [formGroup]="form"
+  (ngSubmit)="isEdit ? onUpdate() : onSubmit()"
+  class="d-grid">
+  <mat-dialog-content class="mat-typography">
+    <mat-card-header class="pt-0">
+      <mat-card-title class="mb-2">Personal Info</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <mat-form-field color="accent" appearance="outline" class="w-100">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" placeholder="Name" />
+            <mat-error *ngIf="form.get('name')?.hasError('required')">
+              Name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field color="accent" appearance="outline" class="w-100">
+            <mat-label>Company Name</mat-label>
+            <input
+              matInput
+              formControlName="company_name"
+              placeholder="Company Name" />
+            <mat-error *ngIf="form.get('company_name')?.hasError('required')">
+              Company Name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field color="accent" appearance="outline" class="w-100">
+            <mat-label>Mobile No</mat-label>
+            <input
+              matInput
+              formControlName="mobile_no"
+              placeholder="Mobile No" />
+            <mat-error *ngIf="form.get('mobile_no')?.hasError('required')">
+              Mobile No is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field color="accent" appearance="outline" class="w-100">
+            <mat-label>Telephone No</mat-label>
+            <input
+              matInput
+              formControlName="telephone_no"
+              placeholder="Telephone No" />
+            <mat-error *ngIf="form.get('telephone_no')?.hasError('required')">
+              Telephone No is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field color="accent" appearance="outline" class="w-100">
+            <mat-label>Whatsapp No</mat-label>
+            <input
+              matInput
+              formControlName="whatsapp_no"
+              placeholder="Whatsapp No" />
+            <mat-error *ngIf="form.get('whatsapp_no')?.hasError('required')">
+              Whatsapp No is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field color="accent" appearance="outline" class="w-100">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="Email" />
+            <mat-error *ngIf="form.get('email')?.hasError('required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="form.get('email')?.hasError('email')">
+              Invalid email format
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field color="accent" appearance="outline" class="w-100">
+            <mat-label>Date of Birth</mat-label>
+            <input
+              matInput
+              [matDatepicker]="dobPicker"
+              formControlName="date_of_birth"
+              placeholder="Date of Birth" />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="dobPicker"></mat-datepicker-toggle>
+            <mat-datepicker #dobPicker></mat-datepicker>
+            <mat-error *ngIf="form.get('date_of_birth')?.hasError('required')">
+              Date of Birth is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field color="accent" appearance="outline" class="w-100">
+            <mat-label>Anniversary Date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="annPicker"
+              formControlName="anniversary_date"
+              placeholder="Anniversary Date" />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="annPicker"></mat-datepicker-toggle>
+            <mat-datepicker #annPicker></mat-datepicker>
+            <mat-error
+              *ngIf="form.get('anniversary_date')?.hasError('required')">
+              Anniversary Date is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field color="accent" appearance="outline" class="w-100">
+            <mat-label>GSTIN</mat-label>
+            <input matInput formControlName="gstin" placeholder="GSTIN" />
+            <mat-error *ngIf="form.get('gstin')?.hasError('required')">
+              GSTIN is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field color="accent" appearance="outline" class="w-100">
+            <mat-label>PAN No</mat-label>
+            <input matInput formControlName="pan_no" placeholder="PAN No" />
+            <mat-error *ngIf="form.get('pan_no')?.hasError('required')">
+              PAN No is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field color="accent" appearance="outline" class="w-100">
+            <mat-label>Credit Limit</mat-label>
+            <input
+              matInput
+              formControlName="credit_limit"
+              placeholder="Credit Limit" />
+            <mat-error *ngIf="form.get('credit_limit')?.hasError('required')">
+              Credit Limit is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 d-flex gap-3 mt-0 pt-2">
+          <mat-checkbox formControlName="apply_tds">Apply TDS</mat-checkbox>
+          <mat-checkbox formControlName="login_access"
+            >Login Access</mat-checkbox
+          >
+        </div>
+      </div>
+      <div class="col-md-12">
+        <mat-form-field color="accent" appearance="outline" class="w-100">
+          <mat-label>Remark</mat-label>
+          <textarea
+            matInput
+            formControlName="remark"
+            placeholder="Remark"
+            maxlength="500">
+          </textarea>
+          <mat-hint align="end"
+            >{{ form.get('remark')?.value?.length }} / 500</mat-hint
+          >
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+
+    <mat-card class="rounded-4 mb-3">
+      <mat-card-header>
+        <mat-card-title-group class="mb-2">
+          <mat-card-title>Address Info</mat-card-title>
+          <button
+            type="button"
+            mat-icon-button
+            class="d-flex justify-content-center align-content-center"
+            (click)="addAddress()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content class="row g-3">
+        <div formArrayName="address" class="col-md-12">
+          @for (addr of address.controls; track $index) {
+            @if ($index > 0) {
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <mat-divider class="w-100"></mat-divider>
+                <button
+                  type="button"
+                  mat-button
+                  color="warn"
+                  class="rounded-4"
+                  (click)="remove($index, 'address')">
+                  Clear
+                </button>
+              </div>
+            }
+            <div [formGroupName]="$index" class="row g-3">
+              <div class="col-md-6">
+                <mat-form-field
+                  color="accent"
+                  appearance="outline"
+                  class="w-100">
+                  <mat-label>Address Line 1</mat-label>
+                  <input
+                    matInput
+                    formControlName="address_line_1"
+                    placeholder="Address Line 1" />
+                  <mat-error
+                    *ngIf="addr.get('address_line_1')?.hasError('required')">
+                    Address Line 1 is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field
+                  color="accent"
+                  appearance="outline"
+                  class="w-100">
+                  <mat-label>Address Line 2</mat-label>
+                  <input
+                    matInput
+                    formControlName="address_line_2"
+                    placeholder="Address Line 2" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field
+                  color="accent"
+                  appearance="outline"
+                  class="w-100">
+                  <mat-label>Country</mat-label>
+                  <input
+                    matInput
+                    formControlName="country"
+                    placeholder="Country" />
+                  <mat-error *ngIf="addr.get('country')?.hasError('required')">
+                    Country is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field
+                  color="accent"
+                  appearance="outline"
+                  class="w-100">
+                  <mat-label>State</mat-label>
+                  <input matInput formControlName="state" placeholder="State" />
+                  <mat-error *ngIf="addr.get('state')?.hasError('required')">
+                    State is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field
+                  color="accent"
+                  appearance="outline"
+                  class="w-100">
+                  <mat-label>City</mat-label>
+                  <input matInput formControlName="city" placeholder="City" />
+                  <mat-error *ngIf="addr.get('city')?.hasError('required')">
+                    City is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field
+                  color="accent"
+                  appearance="outline"
+                  class="w-100">
+                  <mat-label>Pincode</mat-label>
+                  <input
+                    matInput
+                    formControlName="pincode"
+                    placeholder="Pincode" />
+                  <mat-error *ngIf="addr.get('pincode')?.hasError('required')">
+                    Pincode is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="rounded-4">
+      <mat-card-header>
+        <mat-card-title-group class="mb-2">
+          <mat-card-title>Bank Details</mat-card-title>
+          <button
+            type="button"
+            mat-icon-button
+            class="d-flex justify-content-center align-content-center"
+            (click)="addBank()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content class="row g-3">
+        <div formArrayName="bank" class="col-md-12">
+          @for (bankCtrl of bank.controls; track $index) {
+            @if ($index > 0) {
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <mat-divider class="w-100"></mat-divider>
+                <button
+                  type="button"
+                  mat-button
+                  color="warn"
+                  class="rounded-4"
+                  (click)="remove($index, 'bank')">
+                  Clear
+                </button>
+              </div>
+            }
+            <div [formGroupName]="$index" class="row g-3">
+              <div class="col-md-6">
+                <mat-form-field
+                  color="accent"
+                  appearance="outline"
+                  class="w-100">
+                  <mat-label>Bank IFSC Code</mat-label>
+                  <input
+                    matInput
+                    formControlName="bank_ifsc_code"
+                    placeholder="Bank IFSC Code" />
+                  <mat-error
+                    *ngIf="
+                      bankCtrl.get('bank_ifsc_code')?.hasError('required')
+                    ">
+                    Bank IFSC Code is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field
+                  color="accent"
+                  appearance="outline"
+                  class="w-100">
+                  <mat-label>Bank Name</mat-label>
+                  <input
+                    matInput
+                    formControlName="bank_name"
+                    placeholder="Bank Name" />
+                  <mat-error
+                    *ngIf="bankCtrl.get('bank_name')?.hasError('required')">
+                    Bank Name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field
+                  color="accent"
+                  appearance="outline"
+                  class="w-100">
+                  <mat-label>Branch Name</mat-label>
+                  <input
+                    matInput
+                    formControlName="branch_name"
+                    placeholder="Branch Name" />
+                  <mat-error
+                    *ngIf="bankCtrl.get('branch_name')?.hasError('required')">
+                    Branch Name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field
+                  color="accent"
+                  appearance="outline"
+                  class="w-100">
+                  <mat-label>Account No</mat-label>
+                  <input
+                    matInput
+                    formControlName="account_no"
+                    placeholder="Account No" />
+                  <mat-error
+                    *ngIf="bankCtrl.get('account_no')?.hasError('required')">
+                    Account No is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field
+                  color="accent"
+                  appearance="outline"
+                  class="w-100">
+                  <mat-label>Account Holder Name</mat-label>
+                  <input
+                    matInput
+                    formControlName="account_holder_name"
+                    placeholder="Account Holder Name" />
+                  <mat-error
+                    *ngIf="
+                      bankCtrl.get('account_holder_name')?.hasError('required')
+                    ">
+                    Account Holder Name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <div class="mt-2 d-flex justify-content-start align-items-center gap-3">
+      <input
+        #fileUploadTemplate
+        class="d-none"
+        type="file"
+        (change)="onFileSelected($event)" />
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        class="rounded-4"
+        [disabled]="!!selectedFile"
+        (click)="fileUploadTemplate.click()">
+        {{ isEdit ? 'Change' : 'Upload' }} File
+      </button>
+      @if (isEdit) {
+        <button
+          type="button"
+          mat-icon-button
+          color="accent"
+          (click)="viewFile()">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      } @else {
+        {{ this.selectedFile?.name || '' }}
+        @if (this.selectedFile) {
+          <button
+            type="button"
+            mat-icon-button
+            color="warn"
+            class="d-flex"
+            (click)="selectedFile = null">
+            <mat-icon>delete</mat-icon>
+          </button>
+        }
+      }
+    </div>
+  </mat-dialog-content>
+  <mat-divider></mat-divider>
+  <mat-dialog-actions align="end">
+    <div class="">
+      <button
+        mat-stroked-button
+        mat-dialog-close
+        color="warn"
+        class="rounded-4"
+        [disabled]="submitting">
+        Cancel
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        class="rounded-4"
+        [disabled]="submitting">
+        <span class="d-flex gap-2 align-items-center">
+          @if (submitting) {
+            <span class="spinner-border spinner-border-sm" role="status"></span>
+          }
+          <span> {{ isEdit ? 'Update' : 'Submit' }} </span>
+        </span>
+      </button>
+    </div>
+  </mat-dialog-actions>
+</form>

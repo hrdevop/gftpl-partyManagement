@@ -1,0 +1,13 @@
+<h2 mat-dialog-title class="text-muted">{{ errorSubtitle }}</h2>
+<mat-dialog-content class="pb-0">
+  <mat-list role="list">
+    @for (error of errorMessages; track $index) {
+      <mat-list-item role="listitem">
+        <strong>{{ error.field | sentenceCase }}:</strong> {{ error.message }}
+      </mat-list-item>
+    }
+  </mat-list></mat-dialog-content
+>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="rounded-4">Close</button>
+</mat-dialog-actions>

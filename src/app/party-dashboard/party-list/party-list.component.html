@@ -1,0 +1,110 @@
+@if (!isMobile) {
+  <div class="table-container">
+    <table mat-table [dataSource]="parties">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let party">{{ party.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="companyName">
+        <th mat-header-cell *matHeaderCellDef>Company Name</th>
+        <td mat-cell *matCellDef="let party">{{ party.company_name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="mobileNo">
+        <th mat-header-cell *matHeaderCellDef>Mobile No</th>
+        <td mat-cell *matCellDef="let party">{{ party.mobile_no }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let party">{{ party.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let party">
+          <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="editParty(party.id)">
+              <mat-icon>edit</mat-icon> Edit
+            </button>
+            <button mat-menu-item color="warn" (click)="deleteParty(party.id)">
+              <mat-icon>delete</mat-icon> Delete
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="5">
+          @if (loading) {
+            <div class="d-flex justify-content-center p-5">
+              <mat-spinner
+                color="accent"
+                diameter="50"
+                strokeWidth="2"></mat-spinner>
+            </div>
+          } @else {
+            <ng-container *ngIf="false; else noData"></ng-container>
+          }
+        </td>
+      </tr>
+    </table>
+  </div>
+} @else {
+  <div class="card-container">
+    @for (party of parties.data|filter:searchTerm; track $index) {
+      <mat-card class="rounded-4 border border-1">
+        <mat-card-header>
+          <mat-card-title>{{ party.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="d-grid">
+            <p class="d-flex gap-2">
+              <mat-icon>apartment</mat-icon
+              ><span> {{ party.company_name }}</span>
+            </p>
+            <p class="d-flex gap-2">
+              <mat-icon>phone</mat-icon> <span> {{ party.mobile_no }}</span>
+            </p>
+            <p class="d-flex gap-2">
+              <mat-icon>email</mat-icon> <span>{{ party.email }}</span>
+            </p>
+          </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <div class="d-flex gap-3">
+            <button
+              mat-stroked-button
+              color="warn"
+              (click)="deleteParty(party.id)"
+              class="rounded-4">
+              <mat-icon>delete</mat-icon> delete
+            </button>
+            <button
+              mat-flat-button
+              color="accent"
+              (click)="editParty(party.id)"
+              class="rounded-4">
+              <mat-icon>edit</mat-icon> edit
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    }
+    </div>
+}
+<ng-template #noData>
+  <div class="d-grid gap-3 justify-content-center p-5">
+    <div class="text-center">
+      <img src="/assets/icons/empty.png" width="75" alt="" class="opacity-50" />
+    </div>
+    <span class="text-muted fs-5"> No Data Found</span>
+  </div>
+</ng-template>
