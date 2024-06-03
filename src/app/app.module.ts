@@ -14,10 +14,8 @@ import { ErrorDialogComponentComponent } from './shared/components/error-dialog-
 import { PipeModule } from '@pipes/pipe.module';
 import { MaterialModule } from './shared/modules/material.module';
 
-
 @NgModule({
-
-    declarations: [AppComponent, ErrorDialogComponentComponent, ],
+  declarations: [AppComponent, ErrorDialogComponentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

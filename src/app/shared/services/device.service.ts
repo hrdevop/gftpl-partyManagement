@@ -10,11 +10,9 @@ export class DeviceService {
   isMobile$: Observable<boolean>;
 
   constructor(private breakpointObserver: BreakpointObserver) {
-    this.isMobile$ = this.breakpointObserver
-      .observe([Breakpoints.XSmall])
-      .pipe(
-        map(result => result.matches),
-        shareReplay({ bufferSize: 1, refCount: true })
-      );
+    this.isMobile$ = this.breakpointObserver.observe([Breakpoints.XSmall]).pipe(
+      map(result => result.matches),
+      shareReplay({ bufferSize: 1, refCount: true })
+    );
   }
 }

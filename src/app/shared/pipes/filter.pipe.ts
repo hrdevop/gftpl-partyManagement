@@ -2,10 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'filter',
-  pure: false
+  pure: false,
 })
 export class FilterPipe implements PipeTransform {
-
   transform(items: any[], searchTerm: string, key?: string): any[] {
     if (!items || !searchTerm) {
       return items;
@@ -22,5 +21,5 @@ export class FilterPipe implements PipeTransform {
       }
     }
     return filteredItems;
-}
+  }
 }

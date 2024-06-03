@@ -21,10 +21,10 @@
     "lib": ["ES2022", "dom"],
     "paths": {
       "@utils/*": ["./src/app/shared/utils/*"],
-      "@pipes/*":["./src/app/shared/pipes/*"],
-      "@services/*":["./src/app/shared/services/*"],
-      "@components/*":["./src/app/shared/components/*"],
-      "@modules/*":["./src/app/modules/*"],
+      "@pipes/*": ["./src/app/shared/pipes/*"],
+      "@services/*": ["./src/app/shared/services/*"],
+      "@components/*": ["./src/app/shared/components/*"],
+      "@modules/*": ["./src/app/modules/*"]
     }
   },
   "angularCompilerOptions": {

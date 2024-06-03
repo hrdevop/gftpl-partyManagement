@@ -4,7 +4,7 @@
   @if (loggingOut) {
     <mat-spinner [diameter]="25" [strokeWidth]="2" color="accent"></mat-spinner>
   } @else {
-    <button mat-icon-button (click)="onLogout()">
+    <button type="button" mat-icon-button (click)="onLogout()">
       <mat-icon>logout</mat-icon>
     </button>
   }
